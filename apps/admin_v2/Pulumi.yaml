@@ -1,0 +1,4 @@
+name: admin_v2
+runtime: nodejs
+description: Represents cloud infrastructure that hosts your project's Admin area.
+main: pulumi/
