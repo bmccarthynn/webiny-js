@@ -1,7 +1,17 @@
-import React, { createContext, useContext, useMemo, useState, useCallback } from "react";
-import { Route, Routes, BrowserRouter, Outlet } from "react-router-v6";
+import React, {
+    createContext,
+    useContext,
+    useMemo,
+    useState,
+    useCallback,
+    cloneElement
+} from "react";
+import { Route, Routes, BrowserRouter } from "react-router-v6";
 import { compose } from "./compose";
 import { Menu } from "./Menu";
+import { Layout } from "~/components/Layout";
+import { Navigation } from "~/components/Navigation";
+import { Menu as MenuComponent } from "~/components/Menu";
 
 interface ComponentMap {
     [key: string]: React.ComponentType<any>;
@@ -9,16 +19,10 @@ interface ComponentMap {
 
 export interface AdminContextValue {
     components: ComponentMap;
-    /* Menus for main navigation */
-    menus: typeof Menu[];
-    routes: typeof Route[];
-    clients: {
-        /* GraphQL clients */
-    };
+    menus: JSX.Element[];
+    routes: JSX.Element[];
     installers: any[];
-    /* Application installers */
     providers: any[];
-    /* React context providers */
 }
 
 const AdminContext = createContext<AdminContextValue>(null);
@@ -42,47 +46,49 @@ const WelcomeScreen = () => {
     );
 };
 
-const I18N = () => {
-    return <Outlet />;
-};
-
-const AdminRouter = ({ routes }) => {
+const AdminRouter = ({ routes = [] }) => {
     const {
         components: { Dashboard, NotFound }
     } = useAdmin();
 
     return (
         <Routes>
+            {routes.map((route, key) => cloneElement(route, { key }))}
             <Route path="/" element={Dashboard ? <Dashboard /> : <WelcomeScreen />} />
-            <Route path={"i18n"}>
-                <Route path={""} element={<h2>Locales Index</h2>} />
-                <Route path={"locales"} element={<h2>Locales List</h2>} />
-                <Route path={"locales/:id"} element={<h2>Locales Form</h2>} />
-            </Route>
-            <Route path="i18n">
-                <Route path={"settings"} element={<h2>Locales Settings</h2>} />
-            </Route>
             <Route path="*" element={<NotFound />} />
         </Routes>
     );
 };
 
-export const Admin = ({
-    routes = [],
-    menus = [],
+const initializeState = ({
     components = {},
-    clients = {},
-    installers = {},
-    providers = []
-}) => {
-    const [state, setState] = useState({
-        components,
-        clients,
-        routes,
-        menus: [...menus, <Menu key="dashboard" text={"Dashboard"} path={"/"} />],
-        installers: [],
-        providers: []
-    });
+    menus = [],
+    ...props
+}: AdminProps): Required<AdminProps> => {
+    return {
+        routes: props.routes || [],
+        providers: props.providers || [],
+        installers: props.installers || [],
+        components: {
+            ...components,
+            Layout: components.Layout || Layout,
+            Navigation: components.Navigation || Navigation,
+            Menu: components.Menu || MenuComponent
+        },
+        menus: [...menus, <Menu key="dashboard" text={"Dashboard"} path={"/"} />]
+    };
+};
+
+interface AdminProps {
+    routes: JSX.Element[];
+    components?: ComponentMap;
+    menus?: JSX.Element[];
+    installers?: any[];
+    providers?: any[];
+}
+
+export const Admin = (props: AdminProps) => {
+    const [state, setState] = useState<Required<AdminProps>>(initializeState(props));
 
     const addMenu = useCallback((...menus) => {
         setState(state => {
@@ -111,10 +117,12 @@ export const Admin = ({
         [state]
     );
 
+    const Router = useMemo(() => compose(...state.providers)(AdminRouter), [state.providers]);
+
     return (
         <AdminContext.Provider value={adminContext}>
             <BrowserRouter>
-                <AdminRouter routes={state.routes} />
+                <Router routes={state.routes} />
             </BrowserRouter>
         </AdminContext.Provider>
     );
