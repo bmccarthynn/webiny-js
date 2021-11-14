@@ -1,7 +1,7 @@
 import React from "react";
 import { cloneElement, Children } from "react";
 import { Link } from "react-router-v6";
-import { useAdmin } from "@webiny/admin";
+import { useAdmin } from "@webiny/admin/v2";
 
 export const Dashboard = () => {
   const {
@@ -19,6 +19,8 @@ export const NotFound = () => {
   const {
     components: { Layout },
   } = useAdmin();
+  
+  console.log("NOT FOUND");
 
   return (
     <Layout>
@@ -44,23 +46,5 @@ export const Menu = ({ text, path, children }) => {
         </ul>
       ) : null}
     </li>
-  );
-};
-
-export const Layout = ({ children }) => {
-  const {
-    menus,
-    components: { Navigation },
-  } = useAdmin();
-  return (
-    <div>
-      <nav>Layout</nav>
-      <div style={{ display: "flex" }}>
-        <div style={{ flexBasis: 200 }}>
-          <Navigation menus={menus} />
-        </div>
-        <div>{children}</div>
-      </div>
-    </div>
   );
 };

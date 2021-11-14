@@ -1,20 +1,34 @@
-import React from "react";
-import { useAdmin } from "@webiny/admin";
+import React, { Fragment } from "react";
+// import { useAdmin } from "~/index";
+import { TopAppBarPrimary, TopAppBarTitle, TopAppBarSection } from "@webiny/ui/TopAppBar";
 
-export const Layout = ({ children }) => {
-    const {
-        menus,
-        components: { Navigation }
-    } = useAdmin();
+interface LayoutProps {
+    LeftSection: React.ComponentType<any>;
+    children: React.ReactNode;
+}
+
+export const Layout = (props: LayoutProps) => {
+    const { LeftSection, children } = props;
+
+    const defaultLeftSection = <TopAppBarTitle>Webiny</TopAppBarTitle>;
+
     return (
-        <div>
-            <nav>Layout</nav>
-            <div style={{ display: "flex" }}>
-                <div style={{ flexBasis: 200 }}>
-                    <Navigation menus={menus} />
-                </div>
-                <div>{children}</div>
+        <Fragment>
+            <TopAppBarPrimary fixed>
+                <TopAppBarSection>
+                    {LeftSection ? (
+                        <LeftSection>{defaultLeftSection}</LeftSection>
+                    ) : (
+                        defaultLeftSection
+                    )}
+                </TopAppBarSection>
+                <TopAppBarSection>Center Section</TopAppBarSection>
+                <TopAppBarSection>Right Section</TopAppBarSection>
+            </TopAppBarPrimary>
+            <div style={{ paddingTop: 67 }}>
+                {children}
             </div>
-        </div>
+            
+        </Fragment>
     );
 };

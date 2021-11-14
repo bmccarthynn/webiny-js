@@ -7,38 +7,45 @@ import React, {
     cloneElement
 } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-v6";
-import { compose } from "./compose";
-import { Menu } from "./Menu";
 import { Layout } from "~/components/Layout";
 import { Navigation } from "~/components/Navigation";
 import { Menu as MenuComponent } from "~/components/Menu";
+import { compose } from "~/compose";
 
 interface ComponentMap {
     [key: string]: React.ComponentType<any>;
 }
 
-export interface AdminContextValue {
+export interface AdminContext {
     components: ComponentMap;
+    setComponents: (setter: (components: ComponentMap) => ComponentMap) => void;
     menus: JSX.Element[];
     routes: JSX.Element[];
     installers: any[];
     providers: any[];
 }
 
-const AdminContext = createContext<AdminContextValue>(null);
+const AdminContext = createContext<AdminContext>(null);
 AdminContext.displayName = "AdminContext";
 
 export const useAdmin = () => {
     return useContext(AdminContext);
 };
 
+export function useComponents(): [ComponentMap, AdminContext["setComponents"]] {
+    const { components, setComponents } = useAdmin();
+
+    return [components, setComponents];
+}
+
 const WelcomeScreen = () => {
     return (
         <div
             style={{
+                backgroundColor: "#fa5723",
                 height: "100vh",
                 padding: 20,
-                color: "white"
+                color: "#fff"
             }}
         >
             <h2>Welcome to Webiny Admin app!</h2>
@@ -55,7 +62,7 @@ const AdminRouter = ({ routes = [] }) => {
         <Routes>
             {routes.map((route, key) => cloneElement(route, { key }))}
             <Route path="/" element={Dashboard ? <Dashboard /> : <WelcomeScreen />} />
-            <Route path="*" element={<NotFound />} />
+            <Route path="*" element={NotFound ? <NotFound /> : null} />
         </Routes>
     );
 };
@@ -75,20 +82,26 @@ const initializeState = ({
             Navigation: components.Navigation || Navigation,
             Menu: components.Menu || MenuComponent
         },
-        menus: [...menus]
+        menus: [...menus],
+        modules: props.modules || []
     };
 };
 
 interface AdminProps {
-    routes: JSX.Element[];
+    routes?: JSX.Element[];
     components?: ComponentMap;
     menus?: JSX.Element[];
     installers?: any[];
     providers?: any[];
+    modules?: any[];
 }
 
 export const Admin = (props: AdminProps) => {
     const [state, setState] = useState<Required<AdminProps>>(initializeState(props));
+
+    const setComponents = useCallback(setter => {
+        setState(state => ({ ...state, components: setter(state.components) }));
+    }, []);
 
     const addMenu = useCallback((...menus) => {
         setState(state => {
@@ -112,12 +125,13 @@ export const Admin = (props: AdminProps) => {
         () => ({
             ...state,
             addMenu,
-            addRoute
+            addRoute,
+            setComponents
         }),
         [state]
     );
 
-    const Router = useMemo(() => compose(...state.providers)(AdminRouter), [state.providers]);
+    const Router = useMemo(() => compose(...state.modules)(AdminRouter), [state.modules]);
 
     return (
         <AdminContext.Provider value={adminContext}>
@@ -127,3 +141,5 @@ export const Admin = (props: AdminProps) => {
         </AdminContext.Provider>
     );
 };
+
+export const AdminRoot = () => {};
