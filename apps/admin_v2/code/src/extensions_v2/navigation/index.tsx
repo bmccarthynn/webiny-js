@@ -1,9 +1,7 @@
-import React, { Fragment, useCallback, useEffect } from "react";
+import React, { Fragment } from "react";
 import { RecoilRoot, atom, useRecoilState } from "recoil";
 import { Drawer } from "@webiny/ui/Drawer";
 import Hamburger from "./Hamburger";
-import { useComponents } from "@webiny/admin/v2";
-import { useDashboard } from "../components";
 
 export const navigationAtom = atom({
     key: "navigationAtom",
@@ -57,37 +55,17 @@ export const withNavigation =
     ({ title }: NavigationConfig) =>
     Component => {
         return function WithNavigation({ children, ...props }) {
-            const [, setComponents] = useComponents();
-            const { setWidgets } = useDashboard();
-
-            const addMore = useCallback(() => {
-                const id = Date.now();
-
-                setWidgets(widgets => [
-                    ...widgets,
-                    { id: `dynamic-widget-${id}`, component: () => <div>Dynamic widget #{id}</div> }
-                ]);
-            }, []);
-
-            useEffect(() => {
-                setComponents(prev => ({ ...prev, Layout: wrapLayout(prev.Layout, { title }) }));
-                setWidgets(widgets => [
-                    ...widgets,
-                    { id: "custom-widget-1", component: () => <div>Widget #1</div> },
-                    {
-                        id: "custom-widget-2",
-                        component: () => (
-                            <div>
-                                Widget #2 <button onClick={addMore}>Add more widgets</button>
-                            </div>
-                        )
-                    }
-                ]);
-            }, []);
-
             return (
                 <RecoilRoot>
-                    <Component {...props}>{children}</Component>
+                    <Component
+                        {...props}
+                        components={{
+                            ...props.components,
+                            Layout: wrapLayout(props.components.Layout, { title })
+                        }}
+                    >
+                        {children}
+                    </Component>
                 </RecoilRoot>
             );
         };

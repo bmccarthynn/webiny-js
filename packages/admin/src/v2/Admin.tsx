@@ -22,7 +22,6 @@ export interface AdminContext {
     menus: JSX.Element[];
     routes: JSX.Element[];
     installers: any[];
-    providers: any[];
 }
 
 const AdminContext = createContext<AdminContext>(null);
@@ -53,20 +52,6 @@ const WelcomeScreen = () => {
     );
 };
 
-const AdminRouter = ({ routes = [] }) => {
-    const {
-        components: { Dashboard, NotFound }
-    } = useAdmin();
-
-    return (
-        <Routes>
-            {routes.map((route, key) => cloneElement(route, { key }))}
-            <Route path="/" element={Dashboard ? <Dashboard /> : <WelcomeScreen />} />
-            <Route path="*" element={NotFound ? <NotFound /> : null} />
-        </Routes>
-    );
-};
-
 const initializeState = ({
     components = {},
     menus = [],
@@ -74,7 +59,6 @@ const initializeState = ({
 }: AdminProps): Required<AdminProps> => {
     return {
         routes: props.routes || [],
-        providers: props.providers || [],
         installers: props.installers || [],
         components: {
             ...components,
@@ -92,7 +76,6 @@ interface AdminProps {
     components?: ComponentMap;
     menus?: JSX.Element[];
     installers?: any[];
-    providers?: any[];
     modules?: any[];
 }
 
@@ -131,15 +114,25 @@ export const Admin = (props: AdminProps) => {
         [state]
     );
 
-    const Router = useMemo(() => compose(...state.modules)(AdminRouter), [state.modules]);
+    const Renderer = useMemo(() => compose(...state.modules)(Aggregator), [state.modules]);
 
     return (
         <AdminContext.Provider value={adminContext}>
-            <BrowserRouter>
-                <Router routes={state.routes} />
-            </BrowserRouter>
+            <Renderer />
         </AdminContext.Provider>
     );
 };
 
-export const AdminRoot = () => {};
+const Aggregator = ({ components, routes = [] }) => {
+    const { Dashboard, NotFound } = components;
+
+    return (
+        <BrowserRouter>
+            <Routes>
+                {routes.map((route, key) => cloneElement(route, { key }))}
+                <Route path="/" element={Dashboard ? <Dashboard /> : <WelcomeScreen />} />
+                <Route path="*" element={NotFound ? <NotFound /> : null} />
+            </Routes>
+        </BrowserRouter>
+    );
+};

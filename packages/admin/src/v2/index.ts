@@ -1,1 +1,1 @@
-export { Admin, useAdmin, useComponents, AdminRoot } from "./Admin";
+export { Admin, useAdmin, useComponents } from "./Admin";
