@@ -1,8 +1,7 @@
-import React, { Dispatch, SetStateAction, useContext, useEffect, useMemo, useState } from "react";
+import React, { Dispatch, SetStateAction, useContext, useMemo, useState } from "react";
 import { useComponents } from "@webiny/admin/v2";
 import { Link } from "react-router-v6";
 import { useCallback } from "react";
-import { useRef } from "react";
 
 export interface Widget {
     id: string;
@@ -24,8 +23,6 @@ export const useDashboard = () => {
 const CustomDashboard = () => {
     const [{ Layout }] = useComponents();
     const { widgets } = useDashboard();
-    
-    console.log("Layout", Layout);
 
     return (
         <Layout>

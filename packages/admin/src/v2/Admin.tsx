@@ -11,10 +11,7 @@ import { Layout } from "~/components/Layout";
 import { Navigation } from "~/components/Navigation";
 import { Menu as MenuComponent } from "~/components/Menu";
 import { compose } from "~/compose";
-
-interface ComponentMap {
-    [key: string]: React.ComponentType<any>;
-}
+import { ComponentMap } from "~/types";
 
 export interface AdminContext {
     components: ComponentMap;
@@ -30,6 +27,7 @@ AdminContext.displayName = "AdminContext";
 export const useAdmin = () => {
     return useContext(AdminContext);
 };
+
 
 export function useComponents(): [ComponentMap, AdminContext["setComponents"]] {
     const { components, setComponents } = useAdmin();
@@ -52,35 +50,45 @@ const WelcomeScreen = () => {
     );
 };
 
-const initializeState = ({
-    components = {},
-    menus = [],
-    ...props
-}: AdminProps): Required<AdminProps> => {
+const initializeState = (props: AdminProps): Required<AdminProps> => {
     return {
         routes: props.routes || [],
         installers: props.installers || [],
-        components: {
-            ...components,
-            Layout: components.Layout || Layout,
-            Navigation: components.Navigation || Navigation,
-            Menu: components.Menu || MenuComponent
-        },
-        menus: [...menus],
-        modules: props.modules || []
+        components: props.components || {},
+        menus: props.menus || [],
+        services: props.services || []
     };
 };
 
 interface AdminProps {
-    routes?: JSX.Element[];
-    components?: ComponentMap;
-    menus?: JSX.Element[];
-    installers?: any[];
+    routes: JSX.Element[];
+    components: ComponentMap;
+    menus: JSX.Element[];
+    installers: any[];
+    services: JSX.Element[];
+}
+
+interface BootstrapProps {
     modules?: any[];
 }
 
-export const Admin = (props: AdminProps) => {
+const defaultComponents = {
+    Layout,
+    Navigation,
+    Menu: MenuComponent
+};
+
+export const Admin = (props: BootstrapProps) => {
+    const Bootstrap = useMemo(() => compose(...props.modules)(App), [props.modules]);
+
+    return <Bootstrap components={defaultComponents} />;
+};
+
+const App = (props: AdminProps) => {
     const [state, setState] = useState<Required<AdminProps>>(initializeState(props));
+
+    const { components, routes = [] } = props;
+    const { Dashboard, NotFound } = components;
 
     const setComponents = useCallback(setter => {
         setState(state => ({ ...state, components: setter(state.components) }));
@@ -114,25 +122,16 @@ export const Admin = (props: AdminProps) => {
         [state]
     );
 
-    const Renderer = useMemo(() => compose(...state.modules)(Aggregator), [state.modules]);
-
     return (
         <AdminContext.Provider value={adminContext}>
-            <Renderer />
+            {state.services}
+            <BrowserRouter>
+                <Routes>
+                    {routes.map((route, key) => cloneElement(route, { key }))}
+                    <Route path="/" element={Dashboard ? <Dashboard /> : <WelcomeScreen />} />
+                    <Route path="*" element={NotFound ? <NotFound /> : null} />
+                </Routes>
+            </BrowserRouter>
         </AdminContext.Provider>
-    );
-};
-
-const Aggregator = ({ components, routes = [] }) => {
-    const { Dashboard, NotFound } = components;
-
-    return (
-        <BrowserRouter>
-            <Routes>
-                {routes.map((route, key) => cloneElement(route, { key }))}
-                <Route path="/" element={Dashboard ? <Dashboard /> : <WelcomeScreen />} />
-                <Route path="*" element={NotFound ? <NotFound /> : null} />
-            </Routes>
-        </BrowserRouter>
     );
 };

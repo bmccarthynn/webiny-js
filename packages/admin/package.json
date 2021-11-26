@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@webiny/admin",
-  "version": "5.16.0",
+  "version": "5.18.1",
   "main": "index.js",
   "description": "A composable Admin app framework (experimental). Should replace existing @webiny/app-admin.",
   "repository": {

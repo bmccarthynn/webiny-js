@@ -7824,13 +7824,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:16.14.2":
-  version: 16.14.2
-  resolution: "@types/react@npm:16.14.2"
+"@types/react@npm:16.14.20":
+  version: 16.14.20
+  resolution: "@types/react@npm:16.14.20"
   dependencies:
     "@types/prop-types": "*"
+    "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: 1be44c708f3e6e2597223806d83590dae68f296cef8e3ddc6696440c4f2f66775e62f9c46f5e210c29dd13729937923fc50d26aea60d3ed59e8585039cfa4c54
+  checksum: 2fc0b83ce93c4cf003832b5451a4397d6840803162ce1dea3d889c16ffb516062bc5c32f7dd17762b16b4660bc093dc6edc0d97aa5a447f43019b4331e4f760b
   languageName: node
   linkType: hard
 
@@ -7863,6 +7864,13 @@ __metadata:
   version: 0.12.1
   resolution: "@types/retry@npm:0.12.1"
   checksum: 5f46b2556053655f78262bb33040dc58417c900457cc63ff37d6c35349814471453ef511af0cec76a540c601296cd2b22f64bab1ab649c0dacc0223765ba876c
+  languageName: node
+  linkType: hard
+
+"@types/scheduler@npm:*":
+  version: 0.16.2
+  resolution: "@types/scheduler@npm:0.16.2"
+  checksum: b6b4dcfeae6deba2e06a70941860fb1435730576d3689225a421280b7742318d1548b3d22c1f66ab68e414f346a9542f29240bc955b6332c5b11e561077583bc
   languageName: node
   linkType: hard
 
@@ -8573,6 +8581,31 @@ __metadata:
   checksum: 3d1e1b2e84745a963f69acd1c02425b321dd2e608e11dabc467cae0c9a808962bc769ec9afc46fbcea7188cc1e47d72370da762d258f716fb367cb1a7865c54b
   languageName: node
   linkType: hard
+
+"@webiny/admin@^5.16.0, @webiny/admin@workspace:packages/admin":
+  version: 0.0.0-use.local
+  resolution: "@webiny/admin@workspace:packages/admin"
+  dependencies:
+    "@babel/cli": ^7.5.5
+    "@babel/core": ^7.5.5
+    "@babel/plugin-proposal-class-properties": ^7.5.5
+    "@babel/preset-env": ^7.5.5
+    "@babel/preset-react": ^7.0.0
+    "@babel/preset-typescript": ^7.8.3
+    "@types/react": ^16.14.0
+    "@webiny/cli": ^5.16.0
+    "@webiny/project-utils": ^5.16.0
+    babel-plugin-emotion: ^9.2.8
+    babel-plugin-lodash: ^3.3.4
+    babel-plugin-named-asset-import: ^1.0.0-next.3e165448
+    react: ^16.14.0
+    react-dom: ^16.14.0
+    react-router-v6: "npm:react-router-dom@6.0.0"
+    rimraf: ^3.0.2
+    ttypescript: ^1.5.12
+    typescript: ^4.1.3
+  languageName: unknown
+  linkType: soft
 
 "@webiny/api-admin-users-cognito-so-ddb@^5.18.1, @webiny/api-admin-users-cognito-so-ddb@workspace:packages/api-admin-users-cognito-so-ddb":
   version: 0.0.0-use.local
@@ -9772,7 +9805,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@webiny/app-admin-users-cognito@^5.18.1, @webiny/app-admin-users-cognito@workspace:packages/app-admin-users-cognito":
+"@webiny/app-admin-users-cognito@^5.16.0, @webiny/app-admin-users-cognito@^5.18.1, @webiny/app-admin-users-cognito@workspace:packages/app-admin-users-cognito":
   version: 0.0.0-use.local
   resolution: "@webiny/app-admin-users-cognito@workspace:packages/app-admin-users-cognito"
   dependencies:
@@ -9812,7 +9845,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@webiny/app-admin@^5.18.1, @webiny/app-admin@workspace:packages/app-admin":
+"@webiny/app-admin@^5.16.0, @webiny/app-admin@^5.18.1, @webiny/app-admin@workspace:packages/app-admin":
   version: 0.0.0-use.local
   resolution: "@webiny/app-admin@workspace:packages/app-admin"
   dependencies:
@@ -9901,7 +9934,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@webiny/app-file-manager-s3@^5.18.1, @webiny/app-file-manager-s3@workspace:packages/app-file-manager-s3":
+"@webiny/app-file-manager-s3@^5.16.0, @webiny/app-file-manager-s3@^5.18.1, @webiny/app-file-manager-s3@workspace:packages/app-file-manager-s3":
   version: 0.0.0-use.local
   resolution: "@webiny/app-file-manager-s3@workspace:packages/app-file-manager-s3"
   dependencies:
@@ -9918,7 +9951,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@webiny/app-file-manager@^5.18.1, @webiny/app-file-manager@workspace:packages/app-file-manager":
+"@webiny/app-file-manager@^5.16.0, @webiny/app-file-manager@^5.18.1, @webiny/app-file-manager@workspace:packages/app-file-manager":
   version: 0.0.0-use.local
   resolution: "@webiny/app-file-manager@workspace:packages/app-file-manager"
   dependencies:
@@ -9959,7 +9992,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@webiny/app-form-builder@^5.18.1, @webiny/app-form-builder@workspace:packages/app-form-builder":
+"@webiny/app-form-builder@^5.16.0, @webiny/app-form-builder@^5.18.1, @webiny/app-form-builder@workspace:packages/app-form-builder":
   version: 0.0.0-use.local
   resolution: "@webiny/app-form-builder@workspace:packages/app-form-builder"
   dependencies:
@@ -10018,7 +10051,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@webiny/app-graphql-playground@^5.18.1, @webiny/app-graphql-playground@workspace:packages/app-graphql-playground":
+"@webiny/app-graphql-playground@^5.16.0, @webiny/app-graphql-playground@^5.18.1, @webiny/app-graphql-playground@workspace:packages/app-graphql-playground":
   version: 0.0.0-use.local
   resolution: "@webiny/app-graphql-playground@workspace:packages/app-graphql-playground"
   dependencies:
@@ -10057,7 +10090,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@webiny/app-headless-cms@^5.18.1, @webiny/app-headless-cms@workspace:packages/app-headless-cms":
+"@webiny/app-headless-cms@^5.16.0, @webiny/app-headless-cms@^5.18.1, @webiny/app-headless-cms@workspace:packages/app-headless-cms":
   version: 0.0.0-use.local
   resolution: "@webiny/app-headless-cms@workspace:packages/app-headless-cms"
   dependencies:
@@ -10125,7 +10158,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@webiny/app-i18n-content@^5.18.1, @webiny/app-i18n-content@workspace:packages/app-i18n-content":
+"@webiny/app-i18n-content@^5.16.0, @webiny/app-i18n-content@^5.18.1, @webiny/app-i18n-content@workspace:packages/app-i18n-content":
   version: 0.0.0-use.local
   resolution: "@webiny/app-i18n-content@workspace:packages/app-i18n-content"
   dependencies:
@@ -10154,7 +10187,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@webiny/app-i18n@^5.18.1, @webiny/app-i18n@workspace:packages/app-i18n":
+"@webiny/app-i18n@^5.16.0, @webiny/app-i18n@^5.18.1, @webiny/app-i18n@workspace:packages/app-i18n":
   version: 0.0.0-use.local
   resolution: "@webiny/app-i18n@workspace:packages/app-i18n"
   dependencies:
@@ -10197,7 +10230,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@webiny/app-page-builder-elements@^5.18.1, @webiny/app-page-builder-elements@workspace:packages/app-page-builder-elements":
+"@webiny/app-page-builder-elements@^5.16.0, @webiny/app-page-builder-elements@^5.18.1, @webiny/app-page-builder-elements@workspace:packages/app-page-builder-elements":
   version: 0.0.0-use.local
   resolution: "@webiny/app-page-builder-elements@workspace:packages/app-page-builder-elements"
   dependencies:
@@ -10225,7 +10258,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@webiny/app-page-builder@^5.18.1, @webiny/app-page-builder@workspace:packages/app-page-builder":
+"@webiny/app-page-builder@^5.16.0, @webiny/app-page-builder@^5.18.1, @webiny/app-page-builder@workspace:packages/app-page-builder":
   version: 0.0.0-use.local
   resolution: "@webiny/app-page-builder@workspace:packages/app-page-builder"
   dependencies:
@@ -10312,7 +10345,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@webiny/app-plugin-admin-welcome-screen@^5.18.1, @webiny/app-plugin-admin-welcome-screen@workspace:packages/app-plugin-admin-welcome-screen":
+"@webiny/app-plugin-admin-welcome-screen@^5.16.0, @webiny/app-plugin-admin-welcome-screen@^5.18.1, @webiny/app-plugin-admin-welcome-screen@workspace:packages/app-plugin-admin-welcome-screen":
   version: 0.0.0-use.local
   resolution: "@webiny/app-plugin-admin-welcome-screen@workspace:packages/app-plugin-admin-welcome-screen"
   dependencies:
@@ -10339,7 +10372,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@webiny/app-security-access-management@^5.18.1, @webiny/app-security-access-management@workspace:packages/app-security-access-management":
+"@webiny/app-security-access-management@^5.16.0, @webiny/app-security-access-management@^5.18.1, @webiny/app-security-access-management@workspace:packages/app-security-access-management":
   version: 0.0.0-use.local
   resolution: "@webiny/app-security-access-management@workspace:packages/app-security-access-management"
   dependencies:
@@ -10376,7 +10409,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@webiny/app-security@^5.18.1, @webiny/app-security@workspace:packages/app-security":
+"@webiny/app-security@^5.16.0, @webiny/app-security@^5.18.1, @webiny/app-security@workspace:packages/app-security":
   version: 0.0.0-use.local
   resolution: "@webiny/app-security@workspace:packages/app-security"
   dependencies:
@@ -10402,7 +10435,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@webiny/app-tenancy@^5.18.1, @webiny/app-tenancy@workspace:packages/app-tenancy":
+"@webiny/app-tenancy@^5.16.0, @webiny/app-tenancy@^5.18.1, @webiny/app-tenancy@workspace:packages/app-tenancy":
   version: 0.0.0-use.local
   resolution: "@webiny/app-tenancy@workspace:packages/app-tenancy"
   dependencies:
@@ -10508,7 +10541,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@webiny/app@^5.18.1, @webiny/app@workspace:packages/app":
+"@webiny/app@^5.16.0, @webiny/app@^5.18.1, @webiny/app@workspace:packages/app":
   version: 0.0.0-use.local
   resolution: "@webiny/app@workspace:packages/app"
   dependencies:
@@ -10557,7 +10590,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@webiny/cli-plugin-deploy-pulumi@^5.18.1, @webiny/cli-plugin-deploy-pulumi@workspace:packages/cli-plugin-deploy-pulumi":
+"@webiny/cli-plugin-deploy-pulumi@^5.16.0, @webiny/cli-plugin-deploy-pulumi@^5.18.1, @webiny/cli-plugin-deploy-pulumi@workspace:packages/cli-plugin-deploy-pulumi":
   version: 0.0.0-use.local
   resolution: "@webiny/cli-plugin-deploy-pulumi@workspace:packages/cli-plugin-deploy-pulumi"
   dependencies:
@@ -10832,7 +10865,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@webiny/cli@^5.18.1, @webiny/cli@workspace:packages/cli":
+"@webiny/cli@^5.16.0, @webiny/cli@^5.18.1, @webiny/cli@workspace:packages/cli":
   version: 0.0.0-use.local
   resolution: "@webiny/cli@workspace:packages/cli"
   dependencies:
@@ -11184,7 +11217,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@webiny/plugins@^5.17.0-beta.1, @webiny/plugins@^5.18.1, @webiny/plugins@workspace:packages/plugins":
+"@webiny/plugins@^5.16.0, @webiny/plugins@^5.17.0-beta.1, @webiny/plugins@^5.18.1, @webiny/plugins@workspace:packages/plugins":
   version: 0.0.0-use.local
   resolution: "@webiny/plugins@workspace:packages/plugins"
   dependencies:
@@ -11199,7 +11232,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@webiny/project-utils@^5.18.1, @webiny/project-utils@workspace:packages/project-utils":
+"@webiny/project-utils@^5.16.0, @webiny/project-utils@^5.18.1, @webiny/project-utils@workspace:packages/project-utils":
   version: 0.0.0-use.local
   resolution: "@webiny/project-utils@workspace:packages/project-utils"
   dependencies:
@@ -11326,7 +11359,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@webiny/react-router@^5.18.1, @webiny/react-router@workspace:packages/react-router":
+"@webiny/react-router@^5.16.0, @webiny/react-router@^5.18.1, @webiny/react-router@workspace:packages/react-router":
   version: 0.0.0-use.local
   resolution: "@webiny/react-router@workspace:packages/react-router"
   dependencies:
@@ -11382,7 +11415,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@webiny/telemetry@^5.18.1, @webiny/telemetry@workspace:packages/telemetry":
+"@webiny/telemetry@^5.16.0, @webiny/telemetry@^5.18.1, @webiny/telemetry@workspace:packages/telemetry":
   version: 0.0.0-use.local
   resolution: "@webiny/telemetry@workspace:packages/telemetry"
   dependencies:
@@ -11411,7 +11444,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@webiny/ui@^5.18.1, @webiny/ui@workspace:packages/ui":
+"@webiny/ui@^5.16.0, @webiny/ui@^5.18.1, @webiny/ui@workspace:packages/ui":
   version: 0.0.0-use.local
   resolution: "@webiny/ui@workspace:packages/ui"
   dependencies:
@@ -11895,6 +11928,58 @@ __metadata:
     prop-types: ^15.7.2
     react: ^16.14.0
     react-dom: ^16.14.0
+    regenerator-runtime: ^0.13.5
+    theme: ^0.1.0
+  languageName: unknown
+  linkType: soft
+
+"admin_v2@workspace:apps/admin_v2/code":
+  version: 0.0.0-use.local
+  resolution: "admin_v2@workspace:apps/admin_v2/code"
+  dependencies:
+    "@apollo/react-components": ^3.1.5
+    "@editorjs/delimiter": ^1.2.0
+    "@editorjs/list": ^1.6.0
+    "@editorjs/quote": ^2.4.0
+    "@editorjs/underline": ^1.0.0
+    "@types/react": ^16.14.2
+    "@webiny/admin": ^5.16.0
+    "@webiny/app": ^5.16.0
+    "@webiny/app-admin": ^5.16.0
+    "@webiny/app-admin-users-cognito": ^5.16.0
+    "@webiny/app-file-manager": ^5.16.0
+    "@webiny/app-file-manager-s3": ^5.16.0
+    "@webiny/app-form-builder": ^5.16.0
+    "@webiny/app-graphql-playground": ^5.16.0
+    "@webiny/app-headless-cms": ^5.16.0
+    "@webiny/app-i18n": ^5.16.0
+    "@webiny/app-i18n-content": ^5.16.0
+    "@webiny/app-page-builder": ^5.16.0
+    "@webiny/app-page-builder-elements": ^5.16.0
+    "@webiny/app-plugin-admin-welcome-screen": ^5.16.0
+    "@webiny/app-security": ^5.16.0
+    "@webiny/app-security-access-management": ^5.16.0
+    "@webiny/app-tenancy": ^5.16.0
+    "@webiny/cli": ^5.16.0
+    "@webiny/cli-plugin-deploy-pulumi": ^5.16.0
+    "@webiny/plugins": ^5.16.0
+    "@webiny/project-utils": ^5.16.0
+    "@webiny/react-router": ^5.16.0
+    "@webiny/telemetry": ^5.16.0
+    "@webiny/ui": ^5.16.0
+    apollo-cache: ^1.3.5
+    apollo-client: ^2.2.8
+    apollo-link: ^1.2.14
+    apollo-link-batch-http: ^1.2.14
+    apollo-utilities: ^1.3.4
+    core-js: ^3.0.1
+    cross-env: ^5.0.2
+    cross-fetch: ^3.0.4
+    invariant: ^2.2.4
+    prop-types: ^15.7.2
+    react: ^16.14.0
+    react-dom: ^16.14.0
+    react-router-v6: "npm:react-router-dom@6.0.0"
     regenerator-runtime: ^0.13.5
     theme: ^0.1.0
   languageName: unknown
@@ -21977,6 +22062,15 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"history@npm:^5.0.3":
+  version: 5.1.0
+  resolution: "history@npm:5.1.0"
+  dependencies:
+    "@babel/runtime": ^7.7.6
+  checksum: c978710a188ee5ad5d2acf55721c77e27469578c891a66311e71e8920d1390d14476e39a6db07e0ab0f5f8d594f1f62eb55a1059c7549cde7795a36367df5869
+  languageName: node
+  linkType: hard
+
 "hmac-drbg@npm:^1.0.1":
   version: 1.0.1
   resolution: "hmac-drbg@npm:1.0.1"
@@ -32020,6 +32114,18 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"react-router-v6@npm:react-router-dom@6.0.0":
+  version: 6.0.0
+  resolution: "react-router-dom@npm:6.0.0"
+  dependencies:
+    react-router: 6.0.0
+  peerDependencies:
+    react: ">=16.8"
+    react-dom: ">=16.8"
+  checksum: d411dbdb139b27535f80326a8c6dc0dbf600a5fadda8db27460caeade87c252543cc75a8338f032ecf3fcb3d0c9856b10e3e071f8e0c9ccf73f93453fc453884
+  languageName: node
+  linkType: hard
+
 "react-router@npm:5.2.1, react-router@npm:^5.1.2":
   version: 5.2.1
   resolution: "react-router@npm:5.2.1"
@@ -32037,6 +32143,17 @@ fsevents@^1.2.7:
   peerDependencies:
     react: ">=15"
   checksum: 7daae084bf64531eb619cc5f4cc40ce5ae0a541b64f71d74ec71a38cbf6130ebdbb7cf38f157303fad5846deec259401f96c4d6c7386466dcc989719e01f9aaa
+  languageName: node
+  linkType: hard
+
+"react-router@npm:6.0.0":
+  version: 6.0.0
+  resolution: "react-router@npm:6.0.0"
+  dependencies:
+    history: ^5.0.3
+  peerDependencies:
+    react: ">=16.8"
+  checksum: c6ddc02366009e6ea2db28631d676026c1da3b51c0c179b1a1a92e5602f66cbf379e1d56418c7612009f8b049c159c40b4fd1eb8b261c991bf11206417930175
   languageName: node
   linkType: hard
 
