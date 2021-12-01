@@ -20,6 +20,7 @@ import { PluginsContainer } from "@webiny/plugins";
 import { createGroupsStorageOperations } from "~/operations/group";
 import { getElasticsearchOperators } from "@webiny/api-elasticsearch/operators";
 import { elasticsearchFields as cmsEntryElasticsearchFields } from "~/operations/entry/elasticsearchFields";
+import upgrades from "./upgrades";
 
 export const createStorageOperations: StorageOperationsFactory = params => {
     const {
@@ -118,8 +119,13 @@ export const createStorageOperations: StorageOperationsFactory = params => {
              * Field plugins for DynamoDB.
              * We must pass them to the base application.
              */
-            dynamoDbPlugins()
+            dynamoDbPlugins(),
+            /**
+             * Upgrades.
+             */
+            upgrades()
         ],
+        elasticsearch,
         getEntities: () => entities,
         getTable: () => tableInstance,
         getEsTable: () => tableElasticsearchInstance,

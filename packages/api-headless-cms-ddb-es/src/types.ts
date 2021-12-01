@@ -178,6 +178,7 @@ export interface HeadlessCmsStorageOperations extends BaseHeadlessCmsStorageOper
         "system" | "settings" | "groups" | "models" | "entries" | "entriesEs",
         Entity<any>
     >;
+    elasticsearch: Client;
 }
 
 export interface StorageOperationsFactory {

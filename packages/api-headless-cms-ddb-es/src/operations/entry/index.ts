@@ -51,7 +51,7 @@ import { get as getRecord } from "@webiny/db-dynamodb/utils/get";
 import { zeroPad } from "@webiny/utils";
 import { cleanupItem } from "@webiny/db-dynamodb/utils/cleanup";
 
-const createType = (): string => {
+export const createType = (): string => {
     return "cms.entry";
 };
 export const createLatestType = (): string => {
