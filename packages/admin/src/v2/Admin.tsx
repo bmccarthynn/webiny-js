@@ -10,7 +10,7 @@ import { Route, Routes, BrowserRouter } from "react-router-v6";
 import { Layout } from "~/components/Layout";
 import { Navigation } from "~/components/Navigation";
 import { Menu as MenuComponent } from "~/components/Menu";
-import { compose } from "~/compose";
+import { compose } from "./compose";
 import { ComponentMap } from "~/types";
 
 export interface AdminContext {
@@ -54,7 +54,7 @@ const initializeState = (props: AdminProps): Required<AdminProps> => {
     return {
         routes: props.routes || [],
         installers: props.installers || [],
-        components: props.components || {},
+        components: props.components,
         menus: props.menus || [],
         services: props.services || []
     };

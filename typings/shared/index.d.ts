@@ -1,6 +1,3 @@
-import * as types from "@webiny/admin/types";
-import { ComponentType, FunctionComponent, SVGProps } from "react";
-
 declare module "*.md" {
     const md: string;
     export default md;
@@ -17,7 +14,7 @@ declare module "*.jpg" {
 }
 
 declare module "*.svg" {
-    export const ReactComponent: FunctionComponent<SVGProps<SVGSVGElement> & {
+    export const ReactComponent: React.FunctionComponent<React.SVGProps<SVGSVGElement> & {
         alt?: string;
     }>;
 
@@ -36,22 +33,10 @@ declare global {
         }
     }
 }
-
-declare module "@webiny/admin/types" {
-    interface ComponentMap {
-        Layout: ComponentType<types.ComponentProps<{ title: string }>>;
-        Dashboard: ComponentType<{ children: string }>;
-        Button: ComponentType<{ children: string }>
-    }
-}
-
-declare module "@webiny/admin/types" {
-    type CustomLayoutProps = React.ComponentProps<types.ComponentMap["Layout"]>
-    
-    interface ComponentMap {
-        Layout: ComponentType<CustomLayoutProps>, 
-        ui: {
-            Alert: ComponentType<{ children: string }>;
-        }
-    }
-}
+//
+// declare module "@webiny/admin/types" {
+//     interface ComponentMap {
+//         Layout: React.ComponentType<{ title: string }>;
+//         Button: React.ComponentType<{ children: string }>
+//     }
+// }
